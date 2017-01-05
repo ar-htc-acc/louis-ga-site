@@ -3,8 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
-    "nodemon": "nodemon ./bin/www"
+    "start": "set NODE_ENV=production&& node ./bin/www",
+    "local": "set NODE_ENV=development&& node ./bin/www",
+    "localNodemon": "set NODE_ENV=development&& nodemon ./bin/www",
+    "grunt": "grunt",
+    "build": "grunt build",
+    "watch": "grunt watch",
+    "postinstall": "grunt build"
   },
   "dependencies": {
     "body-parser": "~1.15.2",
@@ -13,6 +18,13 @@
     "debug": "~2.2.0",
     "ejs": "~2.5.2",
     "express": "~4.14.0",
+    "grunt": "^1.0.1",
+    "grunt-browserify": "^5.0.0",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-cssmin": "^1.0.2",
+    "grunt-contrib-less": "^1.4.0",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-contrib-watch": "^1.0.0",
     "jquery": "^1.12.4",
     "morgan": "~1.7.0",
     "serve-favicon": "~2.3.0"

@@ -1,3 +1,6 @@
+// set up NODE_ENV with a default value 'development'
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -10,6 +13,15 @@ var users = require('./routes/users');
 var tabs = require('./routes/tabs');
 
 var app = express();
+// set up file name additional extension (compressed or not)
+switch (process.env.NODE_ENV) {
+    case 'production':
+        app.locals.DOT_MIN = '.min';
+        break;
+    default:
+        app.locals.DOT_MIN = '';
+        break;
+}
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -22,9 +34,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 
-// resource path
-app.use('/public', express.static(path.join(__dirname, 'public')));
+// resource path (installed node modules)
 app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
+// local development (don't serve public/tmp in production)
+if (process.env.NODE_ENV != 'production') app.use(express.static(path.join(__dirname, 'public', 'tmp')));
+// production: serve only images & build/*
+app.use(express.static(path.join(__dirname, 'public', 'build')));
+// images
+app.use('/images', express.static(path.join(__dirname, 'public', 'images')));
 
 app.use('/', index);
 app.use('/users', users);
