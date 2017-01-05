@@ -1,2 +1,4 @@
 /** Change header class (selected) */
-console.log('Header change test.');
+$('.blog-nav-item').removeClass('active').filter(function (index, element) {
+    return $(element).attr('href') == window.location.pathname;
+}).addClass('active');
