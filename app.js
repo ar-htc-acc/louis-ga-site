@@ -42,6 +42,8 @@ if (process.env.NODE_ENV != 'production') app.use(express.static(path.join(__dir
 app.use(express.static(path.join(__dirname, 'public', 'build')));
 // images
 app.use('/images', express.static(path.join(__dirname, 'public', 'images')));
+// PDFs
+app.use('/pdfs', express.static(path.join(__dirname, 'public', 'pdfs')));
 
 app.use('/', index);
 app.use('/users', users);
