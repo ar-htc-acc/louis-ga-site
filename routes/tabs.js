@@ -22,4 +22,8 @@ router.get('/signUp', (req, res, next) => {
     res.render('tabs/signUp');
 });
 
+router.get('/receipt', (req, res, next) => {
+    res.render('tabs/receipt');
+});
+
 module.exports = router;

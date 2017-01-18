@@ -6,3 +6,7 @@ $('.blog-nav-item').removeClass('active').filter(function (index, element) {
 $('.sign-up-button').click(function () {
     location.href = '/tabs/signUp/';
 });
+
+$('.transaction-button').click(function () {
+    location.href = '/tabs/receipt/';
+});
