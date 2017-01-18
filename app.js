@@ -11,6 +11,7 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var tabs = require('./routes/tabs');
+var products = require('./routes/products');
 
 var app = express();
 // set up file name additional extension (compressed or not)
@@ -48,6 +49,7 @@ app.use('/pdfs', express.static(path.join(__dirname, 'public', 'pdfs')));
 app.use('/', index);
 app.use('/users', users);
 app.use('/tabs', tabs);
+app.use('/products', products);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
