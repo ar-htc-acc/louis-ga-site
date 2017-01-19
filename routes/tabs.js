@@ -6,24 +6,8 @@ router.use((req, res, next) => {
     next();
 });
 
-router.get('/about', (req, res, next) => {
-    res.render('tabs/about');
-});
-
-router.get('/details', (req, res, next) => {
-    res.render('tabs/details');
-});
-
-router.get('/products', (req, res, next) => {
-    res.render('tabs/products');
-});
-
-router.get('/signUp', (req, res, next) => {
-    res.render('tabs/signUp');
-});
-
-router.get('/receipt', (req, res, next) => {
-    res.render('tabs/receipt');
+router.get('/:targetTab', (req, res, next) => {
+    res.render('tabs/' + req.params.targetTab);
 });
 
 module.exports = router;
