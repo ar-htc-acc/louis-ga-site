@@ -8,7 +8,7 @@ module.exports = function (grunt) {
                 files: [{
                     expand: true,
                     cwd: 'public/stylesheets/',
-                    src: ['**/*.less', '!lib/*.less', '!lib/**/*.less'], // don't compile Less lib
+                    src: ['**/*.less', '!lib/**/*.less'], // don't compile Less lib
                     dest: 'public/tmp/css/',
                     ext: '.css'
                 }]
