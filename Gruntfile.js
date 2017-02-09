@@ -77,7 +77,7 @@ module.exports = function (grunt) {
             },
             styles: {
                 files: ['public/stylesheets/**/*.less'],
-                tasks: ['less', 'cssmin']
+                tasks: ['less', 'postcss', 'cssmin']
             }
         }
     });
