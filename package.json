@@ -12,10 +12,17 @@
     "watch": "grunt watch",
     "postinstall": "grunt build"
   },
+  "browserslist": [
+    "> 1%",
+    "ie 9",
+    "last 2 versions"
+  ],
   "dependencies": {
+    "autoprefixer": "^6.7.2",
     "body-parser": "~1.15.2",
     "bootstrap": "^3.3.7",
     "cookie-parser": "~1.4.3",
+    "cssnano": "^3.10.0",
     "debug": "~2.2.0",
     "ejs": "~2.5.2",
     "express": "~4.14.0",
@@ -26,8 +33,11 @@
     "grunt-contrib-less": "^1.4.0",
     "grunt-contrib-uglify": "^2.0.0",
     "grunt-contrib-watch": "^1.0.0",
+    "grunt-postcss": "^0.8.0",
     "jquery": "^1.12.4",
     "morgan": "~1.7.0",
+    "pixrem": "^3.0.2",
     "serve-favicon": "~2.3.0"
-  }
+  },
+  "devDependencies": {}
 }

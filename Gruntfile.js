@@ -14,6 +14,25 @@ module.exports = function (grunt) {
                 }]
             }
         },
+        postcss: {
+            options: {
+                map: false,
+                processors: [
+//                    require('pixrem')(), // add fallbacks for rem units
+                    require('autoprefixer') //, // add vendor prefixes
+//                    require('cssnano')() // minify the result (this works, but which should you use?)
+                ]
+            },
+            target: {
+                files: [{
+                    expand: true,
+                    cwd: 'public/tmp/css/',
+                    src: ['**/*.css'],
+                    dest: 'public/tmp/css/',
+                    ext: '.css'
+                }]
+            }
+        },
         cssmin: {
             target: {
                 files: [{
@@ -64,15 +83,16 @@ module.exports = function (grunt) {
     });
 
     grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-postcss');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-browserify');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch'); // watch and execute tasks
 
     // dev
-    grunt.registerTask('default', ['browserify', 'less']); // npm run grunt
+    grunt.registerTask('default', ['browserify', 'less', 'postcss']); // npm run grunt
 
     // prod
     // Whenever this "alias task" is run, every specified task in taskList will be run, in the order specified. The taskList argument must be an array of tasks.
-    grunt.registerTask('build', ['browserify', 'less', 'uglify', 'cssmin']); // npm run grunt build
+    grunt.registerTask('build', ['browserify', 'less', 'uglify', 'postcss', 'cssmin']); // npm run grunt build
 };
