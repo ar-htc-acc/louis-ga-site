@@ -8,6 +8,7 @@
     "local": "set NODE_ENV=development&& node ./bin/www",
     "localNodemon": "set NODE_ENV=development&& nodemon ./bin/www",
     "grunt": "grunt",
+    "less": "grunt less-compile",
     "build": "grunt build",
     "watch": "grunt watch",
     "postinstall": "grunt build"

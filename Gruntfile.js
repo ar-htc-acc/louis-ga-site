@@ -8,7 +8,7 @@ module.exports = function (grunt) {
                 files: [{
                     expand: true,
                     cwd: 'public/stylesheets/',
-                    src: ['**/*.less'],
+                    src: ['**/*.less', '!lib/*.less', '!lib/**/*.less'], // don't compile Less lib
                     dest: 'public/tmp/css/',
                     ext: '.css'
                 }]
@@ -91,6 +91,8 @@ module.exports = function (grunt) {
 
     // dev
     grunt.registerTask('default', ['browserify', 'less', 'postcss']); // npm run grunt
+
+    grunt.registerTask('less-compile', ['less']); // just run less
 
     // prod
     // Whenever this "alias task" is run, every specified task in taskList will be run, in the order specified. The taskList argument must be an array of tasks.
