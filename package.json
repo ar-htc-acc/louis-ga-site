@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "linux": "export NODE_ENV=production; forever start -m 3 -a -l forever.log -o stdout.log -e stderr.log ./bin/www",
+    "list": "forever list",
+    "stopall": "forever stopall",
     "start": "set NODE_ENV=production&& node ./bin/www",
     "local": "set NODE_ENV=development&& node ./bin/www",
     "localNodemon": "set NODE_ENV=development&& nodemon ./bin/www",
