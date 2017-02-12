@@ -19,7 +19,6 @@
     "last 2 versions"
   ],
   "dependencies": {
-    "autoprefixer": "^6.7.2",
     "body-parser": "~1.15.2",
     "bootstrap": "^3.3.7",
     "cookie-parser": "~1.4.3",
@@ -31,6 +30,7 @@
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
+    "autoprefixer": "^6.7.2",
     "cssnano": "^3.10.0",
     "forever": "^0.15.3",
     "grunt": "^1.0.1",
@@ -41,7 +41,6 @@
     "grunt-contrib-uglify": "^2.1.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-postcss": "^0.8.0",
-    "pixrem": "^3.0.2",
-    "prefixer": "0.0.3"
+    "pixrem": "^3.0.2"
   }
 }
