@@ -89,6 +89,11 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch'); // watch and execute tasks
 
+    // personal:
+    grunt.registerTask('prod-done-message', 'Print this when it is done.', function () {
+       grunt.log.writeln('* Done running PRODUCTION Grunt tasks! *');
+    });
+
     // dev
     grunt.registerTask('default', ['browserify', 'less', 'postcss']); // npm run grunt
 
@@ -96,5 +101,5 @@ module.exports = function (grunt) {
 
     // prod
     // Whenever this "alias task" is run, every specified task in taskList will be run, in the order specified. The taskList argument must be an array of tasks.
-    grunt.registerTask('build', ['browserify', 'less', 'uglify', 'postcss', 'cssmin']); // npm run grunt build
+    grunt.registerTask('build', ['browserify','uglify', 'less', 'postcss', 'cssmin', 'prod-done-message']); // npm run grunt build
 };
