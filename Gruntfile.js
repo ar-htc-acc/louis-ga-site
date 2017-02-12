@@ -4,19 +4,33 @@ module.exports = function (grunt) {
         // tasks
         pkg: grunt.file.readJSON('package.json'),
         less: {
-            options: {
-                plugins: [
-                    new (require('less-plugin-autoprefix'))({browsers: ["last 9 versions"]}),
-                    new (require('less-plugin-clean-css'))({ compatibility: '*' })
-                ]
-            },
-            target: {
+            prod: {
+                options: {
+                    plugins: [
+                        new (require('less-plugin-autoprefix'))({browsers: ["last 9 versions"]}),
+                        new (require('less-plugin-clean-css'))({ compatibility: '*' })
+                    ]
+                },
                 files: [{
                     expand: true,
                     cwd: 'public/stylesheets/',
                     src: ['**/*.less', '!lib/**/*.less'], // don't compile Less lib
                     dest: 'public/build/css/',
                     ext: '.min.css'
+                }]
+            },
+            dev: {
+                options: {
+                    plugins: [
+                        new (require('less-plugin-autoprefix'))({browsers: ["last 9 versions"]})
+                    ]
+                },
+                files: [{
+                    expand: true,
+                    cwd: 'public/stylesheets/',
+                    src: ['**/*.less', '!lib/**/*.less'], // don't compile Less lib
+                    dest: 'public/tmp/css/',
+                    ext: '.css'
                 }]
             }
         },
@@ -53,7 +67,7 @@ module.exports = function (grunt) {
             },
             styles: {
                 files: ['public/stylesheets/**/*.less'],
-                tasks: ['less', 'postcss', 'cssmin']
+                tasks: ['less:dev']
             }
         }
     });
@@ -69,11 +83,11 @@ module.exports = function (grunt) {
     });
 
     // dev
-    grunt.registerTask('default', ['browserify', 'less']); // npm run grunt
+    grunt.registerTask('default', ['browserify', 'less:dev']); // npm run grunt
 
-    grunt.registerTask('less-compile', ['less']); // just run less
+    grunt.registerTask('less-compile', ['less:dev']); // just run less
 
     // prod
     // Whenever this "alias task" is run, every specified task in taskList will be run, in the order specified. The taskList argument must be an array of tasks.
-    grunt.registerTask('build', ['browserify','uglify', 'less', 'prod-done-message']); // npm run grunt build
+    grunt.registerTask('build', ['browserify','uglify', 'less:prod', 'prod-done-message']); // npm run grunt build
 };
