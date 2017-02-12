@@ -4,41 +4,17 @@ module.exports = function (grunt) {
         // tasks
         pkg: grunt.file.readJSON('package.json'),
         less: {
-            target: {
-                files: [{
-                    expand: true,
-                    cwd: 'public/stylesheets/',
-                    src: ['**/*.less', '!lib/**/*.less'], // don't compile Less lib
-                    dest: 'public/tmp/css/',
-                    ext: '.css'
-                }]
-            }
-        },
-        postcss: {
             options: {
-                map: false,
-                processors: [
-//                    require('pixrem')(), // add fallbacks for rem units
-                    require('autoprefixer') //, // add vendor prefixes
-//                    require('cssnano')() // minify the result (this works, but which should you use?)
+                plugins: [
+                    new (require('less-plugin-autoprefix'))({browsers: ["last 9 versions"]}),
+                    new (require('less-plugin-clean-css'))({ compatibility: '*' })
                 ]
             },
             target: {
                 files: [{
                     expand: true,
-                    cwd: 'public/tmp/css/',
-                    src: ['**/*.css'],
-                    dest: 'public/tmp/css/',
-                    ext: '.css'
-                }]
-            }
-        },
-        cssmin: {
-            target: {
-                files: [{
-                    expand: true,
-                    cwd: 'public/tmp/css/',
-                    src: ['**/*.css', '!**/*.min.css'],
+                    cwd: 'public/stylesheets/',
+                    src: ['**/*.less', '!lib/**/*.less'], // don't compile Less lib
                     dest: 'public/build/css/',
                     ext: '.min.css'
                 }]
@@ -83,8 +59,6 @@ module.exports = function (grunt) {
     });
 
     grunt.loadNpmTasks('grunt-contrib-less');
-    grunt.loadNpmTasks('grunt-postcss');
-    grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-browserify');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch'); // watch and execute tasks
@@ -95,11 +69,11 @@ module.exports = function (grunt) {
     });
 
     // dev
-    grunt.registerTask('default', ['browserify', 'less', 'postcss']); // npm run grunt
+    grunt.registerTask('default', ['browserify', 'less']); // npm run grunt
 
     grunt.registerTask('less-compile', ['less']); // just run less
 
     // prod
     // Whenever this "alias task" is run, every specified task in taskList will be run, in the order specified. The taskList argument must be an array of tasks.
-    grunt.registerTask('build', ['browserify','uglify', 'less', 'postcss', 'cssmin', 'prod-done-message']); // npm run grunt build
+    grunt.registerTask('build', ['browserify','uglify', 'less', 'prod-done-message']); // npm run grunt build
 };
