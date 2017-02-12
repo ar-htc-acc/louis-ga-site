@@ -21,9 +21,7 @@ module.exports = function (grunt) {
             },
             dev: {
                 options: {
-                    plugins: [
-                        new (require('less-plugin-autoprefix'))({browsers: ["last 9 versions"]})
-                    ]
+                    sourceMap: true
                 },
                 files: [{
                     expand: true,
