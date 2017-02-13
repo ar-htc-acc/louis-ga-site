@@ -1,17 +1,92 @@
-@import "lib/constants";
+.background(@bkgrd) {
+  background: @bkgrd;
+}
 
-.targetLessDiv {
-  h1 {
-    color: @test-color;
-  }
+.border-radius(@radius) {
+  border-radius: @radius;
+}
 
-  .color-div {
-    width: @colorDivUnitLength * 4;
-    height: @colorDivUnitLength * 2;
-    background-color: @colorDivBackgroundColor;
-  }
+.box-shadow(@x: 0; @y: 0; @blur: 1px; @color: #000) {
+  box-shadow: @arguments;
+}
 
-  .color-div2:extend(.targetLessDiv .color-div) {
-    background-color: fade(@colorDivBackgroundColor, 10%);
-  }
+.shadow() {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.formfont() {
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.button(@color1; @color2; @color3) {
+  background: -moz-linear-gradient(top, @color1 0%, @color2 6%, @color3 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, @color1), color-stop(6%, @color2), color-stop(100%, @color3));
+  background: -webkit-linear-gradient(top, @color1 0%, @color2 6%, @color3 100%);
+  background: -o-linear-gradient(top, @color1 0%, @color2 6%, @color3 100%);
+  background: -ms-linear-gradient(top, @color1 0%, @color2 6%, @color3 100%);
+  background: linear-gradient(to bottom, @color1 0%, @color2 6%, @color3 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@middle', endColorstr='@stop', GradientType=0);
+  border: 1px solid #980c10;
+}
+
+/* styles start here... */
+
+.button {
+  .formfont;
+  .border-radius(.5em);
+  .box-shadow(1px; 1px; rgba(0, 0, 0, .2));
+
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  padding: .5em 2em .55em;
+}
+
+.button:active {
+  position: relative;
+  top: 1px;
+}
+
+.red {
+  .background(#ed1c24);
+  .button(#ed1c24, #e93a3f, #aa1317);
+}
+
+.red:hover {
+  .background(#f14b52);
+  .button(#f14b52; #ee686c; #d8181d);
+}
+
+.red:active {
+  .background(#c61017);
+  .button(#c61017, #d8181e, #7c0e11);
+}
+
+input {
+  margin-top: 15px;
+  width: 250px;
+}
+
+#submitfrm {
+  border: 1px solid black;
+  border-radius: 4px;
+  width: 350px;
+  padding: 10px;
+  height: 125px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+}
+
+#submitbtn {
+  width: 75px;
+  font-family: Verdana;
+  font-size: 14px;
+  float: right;
+  margin: 10px;
+  clear: both;
+  color: #fff;
+  padding-right: 20px;
 }

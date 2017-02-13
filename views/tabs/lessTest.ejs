@@ -1,20 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/css/lessTest<%= DOT_MIN %>.css'/>
+</head>
+<body>
 
-<% include ../_header.ejs %>
+<form id="submitfrm" action="demo_form.asp">
+    <label for="fname">First name:</label>
+    <input type="text" name="fname"><br>
+    <label for="lname">Last name:</label>
+    <input type="text" name="lname"><br>
+    <input class="button red" id="submitbtn" type="submit" value="Submit">
+</form>
 
-<!-- try LESS feature inside this: -->
-<div class="targetLessDiv">
-    <h1>Test everything inside this (Less.js)</h1>
-
-    <div class="color-div">
-        Color div.
-    </div>
-    <div class="color-div2">
-        Color div 2.
-    </div>
-</div>
-
-<% include ../_footer.ejs %>
-
+</body>
 </html>

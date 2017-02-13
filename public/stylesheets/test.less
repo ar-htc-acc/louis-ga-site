@@ -1,36 +1,9 @@
 @import "lib/constants";
 @import "lib/mixin";
 
-header {
-
-  font-size: 2em;
-  @media @smartphones {
-    font-size: 1em;
-  }
-
-  .myFont;
-  margin-bottom: 25px;
-  nav {
-    height: 25px;
-    a {
-      color: @test-color;
-    }
-  }
+a {
+  .myFont()
 }
-
-footer {
-  .myFont;
-  color: @test-color;
-}
-
-.brown-color {
-  @rgbaColor: rgba(150, 53, 41, 0.5);
-  color: fade(@rgbaColor, 100%);
-  color: @rgbaColor;
-}
-
-
-
 
 
 
