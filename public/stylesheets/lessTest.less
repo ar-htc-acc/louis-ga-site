@@ -4,4 +4,14 @@
   h1 {
     color: @test-color;
   }
+
+  .color-div {
+    width: @colorDivUnitLength * 4;
+    height: @colorDivUnitLength * 2;
+    background-color: @colorDivBackgroundColor;
+  }
+
+  .color-div2:extend(.targetLessDiv .color-div) {
+    background-color: fade(@colorDivBackgroundColor, 10%);
+  }
 }
