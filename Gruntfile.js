@@ -7,8 +7,8 @@ module.exports = function (grunt) {
             prod: {
                 options: {
                     plugins: [
-                        new (require('less-plugin-autoprefix'))({browsers: ["last 9 versions"]}),
-                        new (require('less-plugin-clean-css'))({ compatibility: '*' })
+                        new (require('less-plugin-autoprefix'))({browsers: ['> 1%', 'ie 9', 'last 2 versions']}),
+                        new (require('less-plugin-clean-css'))({advanced: true, compatibility: 'ie9'})
                     ]
                 },
                 files: [{
@@ -37,7 +37,7 @@ module.exports = function (grunt) {
                 files: [{
                     expand: true,
                     cwd: 'public/javascripts/',
-                    src: ['**/*.js', '!module-*.js'], // module-*.js are modules that are used by other JS files, don't include them
+                    src: ['**/*.js', '!modules/**/*.js'], // do not browserify modules in the 'modules' directory
                     dest: 'public/tmp/js/',
                     ext: '.js'
                 }]
@@ -61,7 +61,7 @@ module.exports = function (grunt) {
         watch: {
             scripts: {
                 files: ['public/javascripts/**/*.js'],
-                tasks: ['browserify', 'uglify'] // the order matters?
+                tasks: ['browserify']
             },
             styles: {
                 files: ['public/stylesheets/**/*.less'],
@@ -77,7 +77,7 @@ module.exports = function (grunt) {
 
     // personal:
     grunt.registerTask('prod-done-message', 'Print this when it is done.', function () {
-       grunt.log.writeln('* Done running PRODUCTION Grunt tasks! *');
+        grunt.log.writeln('* Done running PRODUCTION Grunt tasks! *');
     });
 
     // dev
@@ -87,5 +87,5 @@ module.exports = function (grunt) {
 
     // prod
     // Whenever this "alias task" is run, every specified task in taskList will be run, in the order specified. The taskList argument must be an array of tasks.
-    grunt.registerTask('build', ['browserify','uglify', 'less:prod', 'prod-done-message']); // npm run grunt build
+    grunt.registerTask('build', ['browserify', 'uglify', 'less:prod', 'prod-done-message']); // npm run grunt build
 };
