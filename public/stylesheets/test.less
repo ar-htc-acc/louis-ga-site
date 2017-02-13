@@ -1,8 +1,13 @@
 @import "lib/constants";
 @import "lib/mixin";
 
-a {
-  .myFont()
+.average(@a, @b) {
+  @average: ((@a + @b) / 2);
+}
+
+div {
+  .average(6px, 30px);
+  padding: @average;
 }
 
 
