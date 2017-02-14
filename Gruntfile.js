@@ -67,6 +67,9 @@ module.exports = function (grunt) {
             styles: {
                 files: ['public/stylesheets/**/*.less'],
                 tasks: ['less:dev']
+            },
+            ejs: {
+                files: ['views/**/*.ejs']
             }
         }
     });
