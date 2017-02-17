@@ -1,5 +1,8 @@
 module.exports = function (grunt) {
 
+    // https://github.com/sindresorhus/time-grunt
+    require('time-grunt')(grunt);
+
     grunt.initConfig({
         // tasks
         pkg: grunt.file.readJSON('package.json'),
