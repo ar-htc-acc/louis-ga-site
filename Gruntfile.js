@@ -47,7 +47,8 @@ module.exports = function (grunt) {
             options: {
                 // the banner is inserted at the top of the output
                 banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
-                mangle: true
+                //mangle: true // obfuscating might create some bugs, e.g., "var A = ...;", "var B = ...;" all becomes "var a = ..."
+                mangle: false
             },
             target: {
                 files: [{
